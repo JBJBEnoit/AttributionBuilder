@@ -110,15 +110,66 @@
                 
                 return result;                  
             }
+
+                        // Create and display attribution for an OpenStax resource
+                        function getOpenStaxAttribution()
+            {
+                console.log(pageURL);
+                let result = new Attribution(pageURL);
+                var page = document.getElementById('pageFrame');
+                var pageTitleElement = page.contentWindow.document.querySelector("[class^=\"BookBanner__BookChapter\"]");
+                result.pageTitle = pageTitleElement.innerText;
+                console.log(result.pageTitle);
+                
+                var bookTitleElement = page.contentWindow.document.querySelector("[class^=\"BookBanner__BookTitleLink\"]");
+                result.bookTitle = bookTitleElement.innerText;
+                result.bookURL = 'https://openstax.org' + bookTitleElement.getAttribute('href');
+                console.log(result.bookTitle + " " + result.bookURL);
+                
+                var licenseElement = page.contentWindow.document.querySelector("[data-html=\"copyright\"] > a");
+                result.licenseType = licenseElement.innerText;
+                result.licenseURL = licenseElement.getAttribute('href');
+                console.log(result.licenseType + " " + result.licenseURL);
+
+                result.author = "<a href=\'https://openstax.org/\'>OpenStax - Rice University</a>";
+
+                return result;
+
+            }
             
             // This will eventually call the appropriate attribution building function
             // based on selection from a dropdown menu
             function buildAttribution(){
                 
-                let attribution = getPressbooksAttribution(); //this will have to change of course
-                console.log(attribution);
+                let attribution;
+                var select = document.getElementById('source');
+                var selectValue = select.options[select.selectedIndex].value;
                 var outTxt = document.getElementById('resultTxt');
-                outTxt.value = `"<a href='${attribution.pageURL}>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href=${attribution.licenseURL}>${attribution.licenseType}</a>, except where otherwise noted.`;  
+                if (selectValue == "pressbooks")
+                {
+                    if (document.getElementById('targetURL').value.includes('pressbooks'))
+                    {
+                        attribution = getPressbooksAttribution();
+                        outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;           
+                    }
+                    else
+                    {
+                        outTxt.value = "You have not entered a valid Pressbooks URL!"
+                    }
+                }
+                else if (selectValue == "openstax")
+                {
+                    if (document.getElementById('targetURL').value.includes('openstax'))
+                    {
+                        attribution = getOpenStaxAttribution();
+                        outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;           
+                    }
+                    else
+                    {
+                        outTxt.value = "You have not entered a valid OpenStax URL!"
+                    }
+                }
+                console.log(attribution);
                 canvasDiv.style.display = "none";
                 document.getElementById("outputDiv").style.display = "block";
                 //document.getElementById("resultTxt").style.display = "block";
@@ -239,6 +290,13 @@
     <body>
         <h1>Attribution Builder</h1>
         <h3>(very beta 1.0)</h3>
+        <div>
+            <label for="source">Choose an attribution source:</label> 
+                <select name="source" id="source"> 
+                    <option value="pressbooks">Pressbooks</option> 
+                    <option value="openstax">OpenStax</option> 
+                </select>
+        </div>
         <div>
             <input type="text" id="targetURL" placeholder="Enter target URL"/>
         </div>
