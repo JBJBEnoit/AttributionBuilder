@@ -56,14 +56,13 @@
                       throw new Error('Network response was not ok.')
                     })
                     .then(data => {
-                        canvasDiv.style.display = "none"; 
+                         
                         //page.style.display = "block";
                         page.setAttribute('srcdoc', data.contents);
                         page.setAttribute('onLoad', 'buildAttribution();');
                         //var buildButton = document.getElementById('buildBtn');
                         //buildButton.style.display = "inline"; 
-                        document.getElementById("resultTxt").style.display = "block";
-                        document.getElementById("copyBtn").style.display = "inline";
+                        
                         
                     })
                 .catch(error =>{
@@ -118,7 +117,10 @@
                 let attribution = getPressbooksAttribution(); //this will have to change of course
                 console.log(attribution);
                 var outTxt = document.getElementById('resultTxt');
-                outTxt.value = `"<a href='${attribution.pageURL}>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href=${attribution.licenseURL}>${attribution.licenseType}</a>, except where otherwise noted.`;           
+                outTxt.value = `"<a href='${attribution.pageURL}>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href=${attribution.licenseURL}>${attribution.licenseType}</a>, except where otherwise noted.`;  
+                canvasDiv.style.display = "none";
+                document.getElementById("resultTxt").style.display = "block";
+                document.getElementById("copyBtn").style.display = "inline";
             }
             
             // Copies contents of output textarea to the clipboard
