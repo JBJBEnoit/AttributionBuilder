@@ -57,14 +57,22 @@
                     })
                     .then(data => {
                         canvasDiv.style.display = "none"; 
-                        page.style.display = "block";
+                        //page.style.display = "block";
                         page.setAttribute('srcdoc', data.contents);
-                        var buildButton = document.getElementById('buildBtn');
-                        buildButton.style.display = "inline"; 
+                        page.setAttribute('onLoad', 'buildAttribution();');
+                        //var buildButton = document.getElementById('buildBtn');
+                        //buildButton.style.display = "inline"; 
                         document.getElementById("resultTxt").style.display = "block";
                         document.getElementById("copyBtn").style.display = "inline";
-                    });
+                        
+                    })
+                .catch(error =>{
+                    page.style.display = "block";
+                    canvasDiv.style.display = "none";
+                    page.setAttribute('srcdoc', "Something went wrong. Please try again.")});
+                    
             }
+            
                       
             
             // Create and display attribution for a Pressbooks resource
@@ -209,7 +217,9 @@
                 }
     
                 context.font = "30px Arial";
-                context.strokeText("Loading Page", 10, 50);
+                context.strokeText("Working...", 20, 50);
+                context.font = "16px Arial";
+                context.strokeText("May take a few moments", 10, 80);
             }
 
             function animate() {
@@ -231,12 +241,12 @@
         <div>
             <button id="loadPageBtn" onClick="loadTargetPage();">Load Target Page</button>
         </div>
-        <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200"></iframe>
-        <div id='canvasDiv' style="background: #102131; display: none; width: 400px; height: 200px;">
+        <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
+        <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
         <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
         </div>
         
-        <button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>
+        <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
         <textarea id="resultTxt" rows="4" cols="37" style="display:none;"></textarea>
         <button id="copyBtn" onclick="copy('resultTxt')" style="display:none;">Copy to clipboard</button>
         <div id="resultTxtCopyRes"></div>
