@@ -41,6 +41,7 @@
             function loadTargetPage(){
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
+                document.getElementById("outputDiv").style.display = "none";
                 canvas = document.getElementById('container');
                 canvasDiv.style.display = "block";
                 context = canvas.getContext('2d');
@@ -119,8 +120,9 @@
                 var outTxt = document.getElementById('resultTxt');
                 outTxt.value = `"<a href='${attribution.pageURL}>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href=${attribution.licenseURL}>${attribution.licenseType}</a>, except where otherwise noted.`;  
                 canvasDiv.style.display = "none";
-                document.getElementById("resultTxt").style.display = "block";
-                document.getElementById("copyBtn").style.display = "inline";
+                document.getElementById("outputDiv").style.display = "block";
+                //document.getElementById("resultTxt").style.display = "block";
+                //document.getElementById("copyBtn").style.display = "inline";
             }
             
             // Copies contents of output textarea to the clipboard
@@ -247,11 +249,12 @@
         <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
         <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
         </div>
-        
-        <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
-        <textarea id="resultTxt" rows="4" cols="37" style="display:none;"></textarea>
-        <button id="copyBtn" onclick="copy('resultTxt')" style="display:none;">Copy to clipboard</button>
-        <div id="resultTxtCopyRes"></div>
+        <div id="outputDiv" style="display: none;">
+            <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
+            <textarea id="resultTxt" rows="4" cols="37"></textarea>
+            <button id="copyBtn" onclick="copy('resultTxt')">Copy to clipboard</button>
+            <div id="resultTxtCopyRes"></div>
+        </div>
         
     </body>
 </html>
