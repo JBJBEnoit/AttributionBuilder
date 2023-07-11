@@ -42,6 +42,7 @@
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
                 document.getElementById("outputDiv").style.display = "none";
+                document.getElementById("resultTxtCopyRes").innerHTML = "";
                 canvas = document.getElementById('container');
                 canvasDiv.style.display = "block";
                 context = canvas.getContext('2d');
@@ -298,10 +299,10 @@
                 </select>
         </div>
         <div>
-            <input type="text" id="targetURL" placeholder="Enter target URL"/>
+            <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
         <div>
-            <button id="loadPageBtn" onClick="loadTargetPage();">Load Target Page</button>
+            <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
         </div>
         <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
         <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
