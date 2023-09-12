@@ -59,7 +59,7 @@
 
 			return;
 	    	}
-		inputDiv.style.visibility = 'hidden';
+		inputDiv.style.visibility = 'collapse';
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
                 document.getElementById("outputDiv").style.display = "none";
@@ -313,7 +313,7 @@
         <div>
             <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
-    	<div id='customInputDiv' style='visibility: hidden;'>
+    	<div id='customInputDiv' style='visibility: collapse;'>
             <div>
                 <input type="text" id="pageTitle" placeholder="Enter page title" />
             </div>
