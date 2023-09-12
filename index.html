@@ -314,15 +314,29 @@
             <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
     	<div id='customInputDiv' style='visibility: hidden;'>
-	    <input type="text" id="pageTitle" placeholder="Enter page title" />
-		    <input type="text" id="pageURL" placeholder="Enter page URL" />
-		    <input type="text" id="bookTitle" placeholder="Enter book title" />
-		    <input type="text" id="bookURL" placeholder="Enter book URL" />
-		    <input type="text" id="author" placeholder="Enter author" />
-		    <input type="text" id="licenceType" placeholder="Enter licence type" />
-		    <input type="text" id="licenceURL" placeholder="Enter licence URL" />		      
-	    </div>
-        <div>
+            <div>
+                <input type="text" id="pageTitle" placeholder="Enter page title" />
+            </div>
+	    <div>
+                <input type="text" id="pageURL" placeholder="Enter page URL" />
+            </div>
+	    <div>
+                <input type="text" id="bookTitle" placeholder="Enter book title" />
+            </div>
+	    <div>
+                <input type="text" id="bookURL" placeholder="Enter book URL" />
+            </div>
+	    <div>
+                <input type="text" id="author" placeholder="Enter author" />
+            </div>
+	    <div>
+                <input type="text" id="licenceType" placeholder="Enter licence type" />
+            </div>
+	    <div>
+                <input type="text" id="licenceURL" placeholder="Enter licence URL" />
+            </div>	    		      
+    	</div>
+    	<div>
             <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
         </div>
         <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
