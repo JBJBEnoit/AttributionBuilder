@@ -16,6 +16,7 @@
             var pageURL;
             var canvas;
             var context;
+	    var useCustomInput = false;
             var points = [],
             pauseAnimation = false,
     velocity2 = 5, // velocity squared,
@@ -39,6 +40,20 @@
             
             // get page from resource and load it into the iframe
             function loadTargetPage(){
+		let inputDiv = document.getElementById('customInputDiv');
+	    	if (useCustomInput){
+			
+			//If input field div is visible
+			if (inputDiv.style.visibility == 'visible'){
+				getCustomAttribution();
+			}
+		    	else
+			{
+		    		inputDiv.style.visibility = 'visible';
+		    		return;
+	    		}
+	    	}
+		inputDiv.style.visibility = 'hidden';
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
                 document.getElementById("outputDiv").style.display = "none";
@@ -137,6 +152,22 @@
                 return result;
 
             }
+
+	    function getCustomAttribution(){
+
+		    let result = new Attribution(
+			    document.getElementById('pageURL').value,
+			    document.getElementById('pageTitle').value,
+			    document.getElementById('bookURL').value,
+			    document.getElementById('bookTitle').value,
+			    document.getElementById('author').value,
+			    document.getElementById('licenceURL').value,
+			    document.getElementById('licenceType').value
+			    );
+		    useCustomInput = false;
+		    return value;		    
+	    }
+		
             
             // This will eventually call the appropriate attribution building function
             // based on selection from a dropdown menu
@@ -146,7 +177,7 @@
                 var select = document.getElementById('source');
                 var selectValue = select.options[select.selectedIndex].value;
                 var outTxt = document.getElementById('resultTxt');
-                if (selectValue == "pressbooks")
+                /*if (selectValue == "pressbooks")
                 {
                     if (document.getElementById('targetURL').value.includes('pressbooks'))
                     {
@@ -169,7 +200,20 @@
                     {
                         outTxt.value = "You have not entered a valid OpenStax URL!"
                     }
-                }
+                }*/
+	    	if (document.getElementById('targetURL').value.includes('pressbooks'))
+	    	{
+			attribution = getPressbooksAttribution();                                 
+	    	}
+	    	else if (document.getElementById('targetURL').value.includes('openstax'))
+	    	{
+                        attribution = getOpenStaxAttribution();
+	    	}
+	    	else
+		{
+			attribution = getCustomAttribution();
+		}
+		outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;	    
                 console.log(attribution);
                 canvasDiv.style.display = "none";
                 document.getElementById("outputDiv").style.display = "block";
@@ -291,13 +335,13 @@
     <body>
         <h1>Attribution Builder</h1>
         <h3>(beta 1.0)</h3>
-        <div>
+        <!--<div>
             <label for="source">Choose an attribution source:</label> 
                 <select name="source" id="source"> 
                     <option value="pressbooks">Pressbooks</option> 
                     <option value="openstax">OpenStax</option> 
                 </select>
-        </div>
+        </div>-->
         <div>
             <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
@@ -308,6 +352,15 @@
         <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
         <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
         </div>
+	    <div id='customInputDiv' style='visibility: hidden;'>
+		    <input type="text" id="pageTitle" placeholder="Enter page title" />
+		    <input type="text" id="pageURL" placeholder="Enter page URL" />
+		    <input type="text" id="bookTitle" placeholder="Enter book title" />
+		    <input type="text" id="bookURL" placeholder="Enter book URL" />
+		    <input type="text" id="author" placeholder="Enter author" />
+		    <input type="text" id="licenceType" placeholder="Enter licence type" />
+		    <input type="text" id="licenceURL" placeholder="Enter licence URL" />		      
+	    </div>
         <div id="outputDiv" style="display: none;">
             <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
             <textarea id="resultTxt" rows="4" cols="37"></textarea>
