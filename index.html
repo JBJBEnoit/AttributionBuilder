@@ -40,20 +40,7 @@
             
             // get page from resource and load it into the iframe
             function loadTargetPage(){
-		let inputDiv = document.getElementById('customInputDiv');
-	    	if (useCustomInput){
-			
-			//If input field div is visible
-			if (inputDiv.style.visibility == 'visible'){
-				getCustomAttribution();
-			}
-		    	else
-			{
-		    		inputDiv.style.visibility = 'visible';
-		    		return;
-	    		}
-	    	}
-		inputDiv.style.visibility = 'hidden';
+		
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
                 document.getElementById("outputDiv").style.display = "none";
@@ -172,7 +159,21 @@
             // This will eventually call the appropriate attribution building function
             // based on selection from a dropdown menu
             function buildAttribution(){
-                
+                let inputDiv = document.getElementById('customInputDiv');
+	    	if (useCustomInput){
+			
+			//If input field div is visible
+			if (inputDiv.style.visibility == 'visible'){
+				getCustomAttribution();				
+			}
+		    	else
+			{
+		    		inputDiv.style.visibility = 'visible';		    		
+	    		}
+
+			return;
+	    	}
+		inputDiv.style.visibility = 'hidden';
                 let attribution;
                 var select = document.getElementById('source');
                 var selectValue = select.options[select.selectedIndex].value;
@@ -211,7 +212,7 @@
 	    	}
 	    	else
 		{
-			attribution = getCustomAttribution();
+			useCustomInput = true;
 		}
 		outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;	    
                 console.log(attribution);
