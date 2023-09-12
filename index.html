@@ -49,17 +49,17 @@
 	    	if (useCustomInput){
 			
 			//If input field div is visible
-			if (inputDiv.style.visibility == 'visible'){
+			if (inputDiv.style.display == 'block'){
 				buildAttribution();				
 			}
 		    	else
 			{
-		    		inputDiv.style.visibility = 'visible';		    		
+		    		inputDiv.style.visibility = 'block';		    		
 	    		}
 
 			return;
 	    	}
-		inputDiv.style.visibility = 'collapse';
+		inputDiv.style.display = 'none';
                 var page = document.getElementById('pageFrame');
                 page.style.display = "none";
                 document.getElementById("outputDiv").style.display = "none";
@@ -313,7 +313,7 @@
         <div>
             <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
-    	<div id='customInputDiv' style='visibility: collapse;'>
+    	<div id='customInputDiv' style='display: none;'>
             <div>
                 <input type="text" id="pageTitle" placeholder="Enter page title" />
             </div>
