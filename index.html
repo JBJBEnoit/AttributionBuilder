@@ -1,9 +1,32 @@
 <!doctype HTML>
+<!--
+MIT License
+
+Copyright (c) 2023 Jason Benoit and David Giesbrecht
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Attribution Builder</title>
-        <meta author="Jason Benoit - Fanshawe College OER Design Studio">
+        <meta author="Jason Benoit">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,7 +88,7 @@
                 document.getElementById("outputDiv").style.display = "none";
                 document.getElementById("resultTxtCopyRes").innerHTML = "";
                 canvas = document.getElementById('container');
-                canvasDiv.style.display = "block";
+                canvasDiv.style.display = "inline-block";
                 context = canvas.getContext('2d');
                 init();
                 pageURL = document.getElementById('targetURL').value;
@@ -89,7 +112,7 @@
                         
                     })
                 .catch(error =>{
-                    page.style.display = "block";
+                    page.style.display = "inline-block";
                     canvasDiv.style.display = "none";
                     page.setAttribute('srcdoc', "Something went wrong. Please try again.")});        
             }             
@@ -307,51 +330,109 @@
             // end of loading progress animation functions
 		
         </script>
+        <style>
+            body {
+                min-width: 250px;
+                background-color: #054211;
+                font-family: Arial, sans-serif;
+            }
+            
+            h1 {
+                font-family: monospace, sans-serif;
+            }
+            
+            .wrap {
+                width: 90%;
+                height: 77vh;
+                text-align: center;
+                background-color: beige;
+                display: inline-block;
+                text-align: center;
+                margin-left: 5%;
+                margin-top: 10vh;
+                
+            }
+            
+            .child {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            button {
+                font-size: 1.5rem;
+            }
+            
+            footer{
+                text-align: center;
+                color: #fff;
+                margin-top: 1rem;
+            }
+            
+            footer a {
+                
+                color: pink;
+            }
+            
+            #resultTxtCopyRes{
+                margin-left: 1rem;
+            }
+            
+        </style>
     </head>
     <body>
-        <h1>Attribution Builder</h1>
-        <div>
-            <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
-        </div>
-    	<div id='customInputDiv' style='display: none;'>
+        <div class="wrap">
+            <h1>Attribution Builder</h1>
+            <div class="child">
+                <input type="text" id="targetURL" size="50" onfocus="this.select();" style="font-size: 1rem; max-width: 80%;" placeholder="Enter target URL"/>
+            </div>
+            <div id='customInputDiv' style='display: none;'>
+                <div>
+                    <input type="text" id="pageTitle" class="child" placeholder="page title" />
+                </div>
             <div>
-                <input type="text" id="pageTitle" placeholder="Enter page title" />
-            </div>
-	    <div>
-                <input type="text" id="pageURL" placeholder="Enter page URL" />
-            </div>
-	    <div>
-                <input type="text" id="bookTitle" placeholder="Enter book title" />
-            </div>
-	    <div>
-                <input type="text" id="bookURL" placeholder="Enter book URL" />
-            </div>
-	    <div>
-                <input type="text" id="author" placeholder="Enter author" />
-            </div>
-	    <div>
-                <input type="text" id="licenceType" placeholder="Enter licence type" />
-            </div>
-	    <div>
-                <input type="text" id="licenceURL" placeholder="Enter licence URL" />
-            </div>	    		      
-    	</div>
-    	<div>
-            <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
-        </div>
-        <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
-        <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
-        <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
-        </div>
-	    
-        <div id="outputDiv" style="display: none;">
-            <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
-            <textarea id="resultTxt" rows="4" cols="37"></textarea>
+                    <input type="text" id="pageURL" class="child" placeholder="page URL" />
+                </div>
             <div>
-                <button id="copyBtn" onclick="copy('resultTxt')">Copy to clipboard</button>
+                    <input type="text" id="bookTitle" class="child" placeholder="book title" />
+                </div>
+            <div>
+                    <input type="text" id="bookURL" class="child" placeholder="book URL" />
+                </div>
+            <div>
+                    <input type="text" id="author" class="child" placeholder="author" />
+                </div>
+            <div>
+                    <input type="text" id="licenceType" class="child" placeholder="licence type" />
+                </div>
+            <div>
+                    <input type="text" id="licenceURL" class="child" placeholder="licence URL" />
+                </div>	    		      
             </div>
-            <div id="resultTxtCopyRes"></div>
+            <div class="child">
+                <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
+            </div>
+            <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
+            <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;" class="child">
+            <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform: translateX(-50%);"></canvas>
+            </div>
+
+            <div id="outputDiv" style="display: none;" class="child">
+                <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
+                <textarea id="resultTxt" rows="4" cols="50"></textarea>
+                <div>
+                    <button id="copyBtn" onclick="copy('resultTxt')">Copy to clipboard</button>
+                    
+                </div>
+                <span id="resultTxtCopyRes"></span>
+                
+            </div>
         </div>
-        
+        <footer>
+            <div>Attribution Builder by Jason Benoit and David Giesbrecht is open source and made available under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a>.
+            </div>
+            <div>
+                Progress animation is based on <a href="https://codepen.io/rachsmith/pen/kOvmKq">work by Rachel Smith</a> made available under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a>.
+            </div>
+        </footer>
     </body>
 </html>
