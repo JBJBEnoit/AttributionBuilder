@@ -91,11 +91,8 @@
                 .catch(error =>{
                     page.style.display = "block";
                     canvasDiv.style.display = "none";
-                    page.setAttribute('srcdoc', "Something went wrong. Please try again.")});
-                    
-            }
-            
-                      
+                    page.setAttribute('srcdoc', "Something went wrong. Please try again.")});        
+            }             
             
             // Create and display attribution for a Pressbooks resource
             function getPressbooksAttribution()
@@ -180,38 +177,14 @@
             function buildAttribution(){
                 
                 let attribution;
-                var select = document.getElementById('source');
-                //var selectValue = select.options[select.selectedIndex].value;
-                var outTxt = document.getElementById('resultTxt');
-                /*if (selectValue == "pressbooks")
-                {
-                    if (document.getElementById('targetURL').value.includes('pressbooks'))
-                    {
-                        attribution = getPressbooksAttribution();
-                        outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;           
-                    }
-                    else
-                    {
-                        outTxt.value = "You have not entered a valid Pressbooks URL!"
-                    }
-                }
-                else if (selectValue == "openstax")
-                {
-                    if (document.getElementById('targetURL').value.includes('openstax'))
-                    {
-                        attribution = getOpenStaxAttribution();
-                        outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;           
-                    }
-                    else
-                    {
-                        outTxt.value = "You have not entered a valid OpenStax URL!"
-                    }
-                }*/
-	    	if (document.getElementById('targetURL').value.includes('pressbooks'))
+                let outTxt = document.getElementById('resultTxt');
+		let targetURL = document.getElementById('targetURL').value;
+                
+	    	if (targetURL.includes('pressbooks'))
 	    	{
 			attribution = getPressbooksAttribution();                                 
 	    	}
-	    	else if (document.getElementById('targetURL').value.includes('openstax'))
+	    	else if (targetURL.includes('openstax'))
 	    	{
                         attribution = getOpenStaxAttribution();
 	    	}
@@ -223,8 +196,6 @@
                 console.log(attribution);
                 canvasDiv.style.display = "none";
                 document.getElementById("outputDiv").style.display = "block";
-                //document.getElementById("resultTxt").style.display = "block";
-                //document.getElementById("copyBtn").style.display = "inline";
             }
             
             // Copies contents of output textarea to the clipboard
@@ -334,8 +305,7 @@
                 requestAnimationFrame(animate); 
             }
             // end of loading progress animation functions
-            
-        
+		
         </script>
     </head>
     <body>
