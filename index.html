@@ -50,7 +50,7 @@
 			
 			//If input field div is visible
 			if (inputDiv.style.visibility == 'visible'){
-				getCustomAttribution();				
+				buildAttribution();				
 			}
 		    	else
 			{
@@ -217,7 +217,7 @@
 	    	}
 	    	else
 		{
-			outTxt.value = "Error: Got to line 217";
+			attribution = getCustomAttribution();
 		}
 		outTxt.value = `"<a href='${attribution.pageURL}'>${attribution.pageTitle}</a>" from <a href='${attribution.bookURL}'>${attribution.bookTitle}</a> by ${attribution.author} is licensed under a <a href='${attribution.licenseURL}'>${attribution.licenseType}</a>, except where otherwise noted.`;	    
                 console.log(attribution);
