@@ -313,15 +313,8 @@
         <div>
             <input type="text" id="targetURL" onfocus="this.select();" placeholder="Enter target URL"/>
         </div>
-        <div>
-            <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
-        </div>
-        <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
-        <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
-        <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
-        </div>
-	    <div id='customInputDiv' style='visibility: hidden;'>
-		    <input type="text" id="pageTitle" placeholder="Enter page title" />
+    	<div id='customInputDiv' style='visibility: hidden;'>
+	    <input type="text" id="pageTitle" placeholder="Enter page title" />
 		    <input type="text" id="pageURL" placeholder="Enter page URL" />
 		    <input type="text" id="bookTitle" placeholder="Enter book title" />
 		    <input type="text" id="bookURL" placeholder="Enter book URL" />
@@ -329,6 +322,14 @@
 		    <input type="text" id="licenceType" placeholder="Enter licence type" />
 		    <input type="text" id="licenceURL" placeholder="Enter licence URL" />		      
 	    </div>
+        <div>
+            <button id="loadPageBtn" onClick="loadTargetPage();">Build Attribution</button>
+        </div>
+        <iframe id='pageFrame' srcdoc='<div>Page Preview Area</div>' width="400" height="200" style="display:none;"></iframe>
+        <div id='canvasDiv' style="background: #102131; display: none; width: 200px; height: 200px;">
+        <canvas id='container' width="200" height="200" style="background: #102131; margin-left: 50%; transform:translateX(-50%);"></canvas>
+        </div>
+	    
         <div id="outputDiv" style="display: none;">
             <!--<button id="buildBtn" style="display:none;" onclick="buildAttribution();">Build Attribution</button>-->
             <textarea id="resultTxt" rows="4" cols="37"></textarea>
