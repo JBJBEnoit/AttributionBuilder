@@ -10,7 +10,7 @@ into this:
 
 which displays like this:
 
-    "[Open Initiative at Fanshawe College](https://ecampusontario.pressbooks.pub/fanshaweoerdesignstudio/chapter/open-initiative-at-fanshawe-college/)" from [The Journey to Open](https://ecampusontario.pressbooks.pub/fanshaweoerdesignstudio) by Fanshawe College is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/), except where otherwise noted.
+"[Open Initiative at Fanshawe College](https://ecampusontario.pressbooks.pub/fanshaweoerdesignstudio/chapter/open-initiative-at-fanshawe-college/)" from [The Journey to Open](https://ecampusontario.pressbooks.pub/fanshaweoerdesignstudio) by Fanshawe College is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-nc-sa/4.0/), except where otherwise noted.
 
 If the AttributionBuilder detects that the resource is neither in Pressbooks or OpenStax format, it will provide a set of input fields for entering the relevant data manually.
 
